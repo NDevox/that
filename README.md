@@ -36,7 +36,7 @@ import antigravity
 #### 3. Braces for code block
 
 ```python
-import braces
+from __future__ import braces
 ```
 
 #### 4. Print `Hello world!` to `stdout`
@@ -96,10 +96,10 @@ while ...:
 
 #### 8. No more zero `0000`
 
-You can use exponent instead of typing long number.
+You can use exponents instead of typing long floating point numbers.
 
 ```python
-total = 1e4 # 10000
+total = 1e4 # 10000.0
 ```
 
 #### 9. Rot13 cipher
@@ -241,17 +241,19 @@ except: # instead use except TypeError:
 	pass
 ```
 
-#### 2. Always use `None` as default parameter
+#### 2. Use `None` as default parameter
+
+Be careful: Mutable default parameters may not behave the way you think.
 
 ```python
 def hello(items=[]):
     items.append('hello')
     return items
 first = hello()
-second = hello() # you expect here ['hello'] but you will get ['hello', 'hello']
+second = hello() # you will get ['hello', 'hello'] here
 ```
 
-To avoid this problem (bug) always use `None` as default parameter in function definition. i.e
+If you expect a new object every time, use `None` as the default instead:
 
 ```python
 def hello(items=None):
@@ -260,10 +262,8 @@ def hello(items=None):
     items.append('hello')
     return items
 first = hello()
-second = hello() # you expect here ['hello'] but you will get ['hello', 'hello']
+second = hello() # now you get ['hello']
 ```
-
-Now you don't have the problem anymore.
 
 Command Line
 ------------
@@ -279,9 +279,9 @@ For options: `python -m "calendar" --help`
 #### 2. Starts a server
 
 ```bash
-python -m "http.server" --bind 127.0.0.1 8080
+python -m http.server --bind 127.0.0.1 8080
 ```
-For options: `python -m "http.server" --help`
+For options: `python -m http.server --help`
 
 Extend Python
 -------------
